@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("Staff")
+  createdAt DateTime @default(now())
+}
+
+model Conference {
+  id         Int      @id @default(autoincrement())
+  name       String
+  location   String
+  date       String
+  attendees  Int
+  createdAt  DateTime @default(now())
+}
+
+model Speaker {
+  id         Int      @id @default(autoincrement())
+  name       String
+  company    String
+  topic      String
+  status     String
+  createdAt  DateTime @default(now())
+}
+
+model Sponsor {
+  id         Int      @id @default(autoincrement())
+  name       String
+  tier       String
+  amount     String
+  status     String
+  createdAt  DateTime @default(now())
+}
+
+model Lead {
+  id         Int      @id @default(autoincrement())
+  name       String
+  company    String
+  email      String   @unique
+  stage      String
+  value      String
+  createdAt  DateTime @default(now())
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  title     String
+  message   String
+  type      String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
